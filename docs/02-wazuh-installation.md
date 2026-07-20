@@ -2,62 +2,70 @@
 
 ## Objective
 
-Deploy the Wazuh platform on an Ubuntu Server virtual machine to serve as the central Security Information and Event Management (SIEM) solution for collecting, processing, and analyzing security events from monitored endpoints.
+Deploy the Wazuh platform on an Ubuntu Server virtual machine to establish the Security Information and Event Management (SIEM) solution for the Home SOC lab.
 
 ---
 
-## Lab Environment
+## Why Wazuh?
 
-| Component | Details |
-|----------|---------|
-| Host Operating System | Windows 11 |
-| Virtualization Platform | Oracle VirtualBox |
-| Guest Operating System | Ubuntu Server 24.04 LTS |
-| SIEM Platform | Wazuh 4.13.1 |
+Wazuh is an open-source SIEM and Extended Detection and Response (XDR) platform that provides centralized log collection, security monitoring, file integrity monitoring, vulnerability detection, and threat hunting capabilities. It was selected for this project because it is widely adopted in the cybersecurity community and offers enterprise-grade security monitoring features suitable for hands-on learning.
 
 ---
 
-## Installation Overview
+## Prerequisites
 
-The Wazuh platform was installed on an Ubuntu Server virtual machine following the official installation guide. The deployment included:
+Before installing Wazuh, the following environment was prepared:
+
+- Ubuntu Server 24.04 LTS installed on Oracle VirtualBox
+- System packages updated to the latest version
+- Internet connectivity configured
+- Sufficient system resources allocated for the virtual machine
+
+---
+
+## Installation Process
+
+The official Wazuh installation assistant was used to deploy the platform.
+
+The installation included the following components:
 
 - Wazuh Manager
 - Wazuh Indexer
 - Wazuh Dashboard
 
-After the installation completed successfully, the Wazuh services were started automatically and the dashboard became accessible through a web browser.
+After the installation completed successfully, the Wazuh services were started automatically.
 
 ---
 
 ## Verification
 
-The installation was verified by confirming:
+The installation was verified by performing the following checks:
 
-- All Wazuh services were running successfully.
-- The Wazuh Dashboard was accessible.
-- The dashboard loaded without errors.
-- The manager was ready to receive endpoint agents.
+- Successfully accessed the Wazuh Dashboard through a web browser.
+- Confirmed that the Wazuh Manager service was running.
+- Verified that the dashboard loaded without errors.
+- Confirmed the server was ready to receive endpoint agents.
 
 ---
 
 ## Outcome
 
-The Wazuh platform was successfully deployed and configured as the central monitoring server for the Home SOC environment.
+The Wazuh platform was successfully deployed as the central monitoring solution for the Home SOC environment.
 
-This installation established the foundation required for endpoint monitoring, security event collection, threat detection, and future incident investigations.
+This deployment provides the foundation for endpoint monitoring, centralized log management, threat detection, and security investigations.
 
 ---
 
 ## Skills Demonstrated
 
 - Ubuntu Server Administration
-- Wazuh Deployment
-- SIEM Configuration
-- Virtual Machine Management
-- Security Monitoring Infrastructure
+- SIEM Deployment
+- Wazuh Platform Installation
+- Linux System Management
+- Virtual Machine Administration
 
 ---
 
 ## References
 
-- Official Wazuh Documentation: https://documentation.wazuh.com/
+- Wazuh Documentation: https://documentation.wazuh.com/
