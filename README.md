@@ -53,6 +53,13 @@ Wazuh Dashboard
 * Service configuration changes
 * Sysmon Process Creation (Event ID 1)
 
+### Detection Engineering
+
+* Integrated Sysmon Event ID 1 (Process Creation) into Wazuh
+* Developed a custom Wazuh rule to detect Notepad process creation
+* Validated the detection using Sysmon-generated Windows events
+* Verified end-to-end log collection from Windows → Wazuh Manager → Dashboard
+
 ## Detection Engineering
 
 Implemented a custom Wazuh detection rule for Sysmon Process Creation events.
@@ -97,6 +104,10 @@ Security Alert
 * Log Analysis
 * Incident Investigation
 * Custom Rule Development
+* Sysmon Integration
+* Custom SIEM Rule Development
+* Windows Process Monitoring
+  
 
 ## Environment
 
@@ -110,10 +121,18 @@ Security Alert
 
 ## Project Status
 
-✅ Windows endpoint monitoring complete
+✅ Infrastructure Complete
 
-✅ Sysmon integrated with Wazuh
+✅ Windows Agent Monitoring
 
-✅ Custom Sysmon detection rules implemented
+✅ File Integrity Monitoring
 
-🔄 Additional detections (PowerShell, CMD, Registry, Persistence) coming next.
+✅ Sysmon Integration
+
+✅ Custom Detection Engineering
+
+🚧 Next:
+- Active Response
+- MITRE ATT&CK Mapping
+- Attack Simulations
+- Dashboards
