@@ -98,15 +98,14 @@ Security Alert
 * Wazuh Administration
 * Sysmon Integration
 * Windows Event Logging
-* Detection Engineering
-* Threat Hunting
 * Endpoint Monitoring
+* Detection Engineering
+* Custom SIEM Rule Development
+* Threat Hunting
+* Windows Process Monitoring
 * Log Analysis
 * Incident Investigation
-* Custom Rule Development
-* Sysmon Integration
-* Custom SIEM Rule Development
-* Windows Process Monitoring
+* MITRE ATT&CK Mapping
   
 
 ## Environment
