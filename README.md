@@ -1,6 +1,16 @@
 # SOC Homelab with Wazuh
 
-A resume-ready Security Operations Center (SOC) homelab built using **Wazuh**, **Ubuntu Server**, and a **Windows 11 endpoint agent**. This project demonstrates endpoint monitoring, centralized log collection, threat hunting, and basic detection engineering in a virtualized environment.
+A resume-ready Security Operations Center (SOC) homelab built using **Wazuh**, **Ubuntu Server**, **Sysmon**, and a **Windows 11 endpoint agent**. This project demonstrates endpoint monitoring, centralized log collection, threat hunting, file integrity monitoring, and custom detection engineering in a virtualized environment.
+
+## Key Features
+
+- Centralized Windows log collection
+- File Integrity Monitoring (FIM)
+- Sysmon integration
+- Custom detection engineering
+- Threat hunting with Wazuh
+- MITRE ATT&CK-aligned detections
+- Active Response automation
 
 ## Project Overview
 
@@ -13,20 +23,21 @@ The lab consists of:
 * Detection validation using real Windows events (including Event ID 4624 logon activity)
 
 ## Architecture
-
+```
 Windows 11 Endpoint (SP-WIN-01)
-|
-v
+        │
+        ▼ 
 Wazuh Agent
-|
-v
+        │
+        ▼ 
 Wazuh Manager (Ubuntu VM)
-|
-v
+        │
+        ▼ 
 Wazuh Indexer
-|
-v
+        │
+        ▼ 
 Wazuh Dashboard
+```
 
 ## What Has Been Implemented
 
@@ -82,7 +93,7 @@ Wazuh Manager
 Custom Detection Rule
         │
         ▼
-Security Alert
+Wazuh Alert
 ```
 
 ### Custom Detection
@@ -91,6 +102,20 @@ Security Alert
 - Event ID: 1 (Process Creation)
 - Custom Rule: Detect Notepad execution
 - Alert generated successfully in Wazuh Threat Hunting
+
+## Documentation
+
+- Project Setup
+- Wazuh Installation
+- Windows Agent Installation
+- Log Collection
+- Threat Hunting
+- File Integrity Monitoring
+- Sysmon Integration
+- Custom Detection Rules
+- Active Response *(coming soon)*
+- MITRE ATT&CK Mapping *(coming soon)*
+- Attack Simulations *(coming soon)*
 
 ## Skills Demonstrated
 
@@ -106,7 +131,15 @@ Security Alert
 * Log Analysis
 * Incident Investigation
 * MITRE ATT&CK Mapping
-  
+
+## Repository Structure
+
+```text
+configs/        Configuration files
+docs/           Project documentation
+screenshots/    Evidence and validation screenshots
+README.md       Project overview
+```
 
 ## Environment
 
@@ -130,8 +163,11 @@ Security Alert
 
 ✅ Custom Detection Engineering
 
-🚧 Next:
-- Active Response
-- MITRE ATT&CK Mapping
-- Attack Simulations
-- Dashboards
+## Future Enhancements
+
+- Implement Active Response
+- Expand MITRE ATT&CK technique mapping
+- Simulate Windows attack techniques
+- Create custom Wazuh dashboards
+- Develop additional Sysmon detection rules
+- Build detection rules for PowerShell, CMD, and LOLBins
