@@ -32,42 +32,88 @@ Wazuh Dashboard
 
 ### Infrastructure
 
-* Ubuntu VM configured in VirtualBox
-* Bridged networking enabled
-* Wazuh 4.13.1 installed (Manager, Indexer, Dashboard)
+* Ubuntu 24.04 virtual machine
+* Oracle VirtualBox
+* Bridged networking
+* Wazuh 4.13.1 deployment
+* Windows 11 endpoint enrollment
 
 ### Endpoint Monitoring
 
-* Windows 11 agent enrolled successfully
-* Agent status verified as **Active**
-* Security, System, and Application logs collected centrally
+* Windows Security log collection
+* Windows System log collection
+* Windows Application log collection
+* Microsoft Sysmon Operational log collection
+* Agent health monitoring
 
 ### Threat Hunting
 
-* Event searches performed in Wazuh
-* Windows Security Event ID **4624** (successful logon) identified and validated
-* Registry integrity monitoring events observed
-* Service configuration change events analyzed
+* Event ID 4624 (Successful Logon)
+* Registry Integrity Monitoring (FIM)
+* Service configuration changes
+* Sysmon Process Creation (Event ID 1)
+
+## Detection Engineering
+
+Implemented a custom Wazuh detection rule for Sysmon Process Creation events.
+
+### Detection Workflow
+
+```
+Windows Process
+        │
+        ▼
+Sysmon Event ID 1
+        │
+        ▼
+Wazuh Agent
+        │
+        ▼
+Wazuh Manager
+        │
+        ▼
+Custom Detection Rule
+        │
+        ▼
+Security Alert
+```
+
+### Custom Detection
+
+- Data Source: Microsoft-Windows-Sysmon/Operational
+- Event ID: 1 (Process Creation)
+- Custom Rule: Detect Notepad execution
+- Alert generated successfully in Wazuh Threat Hunting
 
 ## Skills Demonstrated
 
-* SIEM deployment and administration
-* Endpoint log collection
-* Windows Event Log analysis
-* Threat hunting
-* Network configuration
-* Security monitoring
-* Incident investigation fundamentals
+* SIEM Deployment
+* Wazuh Administration
+* Sysmon Integration
+* Windows Event Logging
+* Detection Engineering
+* Threat Hunting
+* Endpoint Monitoring
+* Log Analysis
+* Incident Investigation
+* Custom Rule Development
 
 ## Environment
 
-| Component      | Version           |
-| -------------- | ----------------- |
-| Ubuntu         | 24.04             |
-| Wazuh          | 4.13.1            |
-| Windows        | Windows 11        |
+| Component | Version |
+|----------|---------|
+| Ubuntu | 24.04 |
+| Wazuh | 4.13.1 |
+| Sysmon | Latest |
+| Windows | Windows 11 |
 | Virtualization | Oracle VirtualBox |
 
 ## Project Status
 
-**In Progress** — Additional detections, dashboards, and documentation will be added as the homelab evolves.
+✅ Windows endpoint monitoring complete
+
+✅ Sysmon integrated with Wazuh
+
+✅ Custom Sysmon detection rules implemented
+
+🔄 Additional detections (PowerShell, CMD, Registry, Persistence) coming next.
