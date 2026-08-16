@@ -151,13 +151,48 @@ This validates the end-to-end detection pipeline from endpoint activity to SIEM 
 
 ## 7. Evidence
 
-Screenshots captured during the validation include:
+### 7.1 Account Discovery Command Execution
 
-* Wazuh Threat Hunting results showing rules `92033`, `92039`, `92052`, and `92032`.
-* Wazuh alert details for the account discovery activity.
-* Windows endpoint activity used to generate the detection.
+The following screenshot shows the `net user guest` command executed from PowerShell on the monitored Windows endpoint.
 
-Screenshots are stored in the project's `screenshots/` directory.
+![Net User Guest Command](../screenshots/attack%20simulations/01-net-user-guest-command.png.png)
+
+The command successfully queried information about the local Guest account.
+
+---
+
+### 7.2 Wazuh Detection
+
+After executing the command, Wazuh generated multiple alerts associated with the discovery activity.
+
+The primary detection was:
+
+- **Rule ID:** 92039
+- **Description:** A net.exe account discovery command was initiated
+- **Level:** 3
+
+Related detections were also observed, including Rules `92033`, `92032`, and `92052`.
+
+![Account Discovery Alerts](../screenshots/attack%20simulations/02-account-discovery-alerts.png.png)
+
+---
+
+### 7.3 Alert Investigation
+
+The Rule `92039` event was inspected to verify the underlying process activity.
+
+Important event fields included:
+
+- **Agent:** `SP-WIN-01`
+- **Process:** `C:\Windows\System32\net1.exe`
+- **Command Line:** `C:\WINDOWS\system32\net1 user guest`
+- **Parent Process:** `C:\Windows\System32\net.exe`
+- **Parent Command Line:** `net.exe user guest`
+- **Integrity Level:** Medium
+
+![Rule 92039 Event Details](../screenshots/attack%20simulations/03-rule-92039-details.png.png)
+
+The process telemetry confirms that the account discovery command executed on the endpoint was successfully captured and correlated with the Wazuh detection.
 
 ---
 
