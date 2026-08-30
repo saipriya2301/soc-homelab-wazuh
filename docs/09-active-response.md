@@ -46,9 +46,11 @@ The script was configured with restricted permissions and executed by the Wazuh 
 
 ---
 
-## Active Response Configuration
+## Active Response Test Configuration
 
 The custom response was associated specifically with Rule `100100`.
+
+During validation, the Active Response was temporarily enabled using the following configuration:
 
 ```xml
 <active-response>
@@ -66,8 +68,9 @@ Important configuration choices:
 - `location` is set to `server`, so the response executes on the Wazuh manager rather than the Windows endpoint.
 - `timeout` is set to `30` seconds to test automatic rollback.
 - `timeout_allowed` enables the stateful response mechanism.
+- `<disabled>no</disabled>` was used only during controlled validation of the response.
 
-This design intentionally avoids making changes to the Windows firewall, network configuration, user accounts, registry, or other system settings.
+This design intentionally avoided making changes to the Windows firewall, network configuration, user accounts, registry, or other system settings.
 
 ---
 
@@ -89,7 +92,7 @@ When the response is triggered, the script:
 ```
 
 5. Writes a confirmation message containing the triggering rule ID.
-6. Waits for Wazuh's timeout-based delete action.
+6. Handles Wazuh's timeout-based delete action.
 7. Removes the temporary marker file when the response expires.
 
 The marker file is used only as proof that the automated response executed successfully.
@@ -126,7 +129,7 @@ Temporary Marker Removed
 
 ## Detection Validation
 
-The Wazuh dashboard successfully generated the custom alert.
+The Wazuh Dashboard successfully generated the custom alert.
 
 Observed values included:
 
@@ -155,7 +158,7 @@ The response successfully created the file and produced the following message:
 Wazuh Active Response test triggered successfully by rule 100100.
 ```
 
-This confirmed that:
+This confirmed the following workflow:
 
 ```text
 Rule 100100
@@ -189,6 +192,40 @@ This confirmed that Wazuh successfully executed the timeout-based rollback and r
 
 ---
 
+## Final Safe State
+
+After Active Response execution and automatic rollback were successfully validated, the test response was disabled.
+
+The final Active Response configuration was:
+
+```xml
+<active-response>
+  <disabled>yes</disabled>
+  <command>ar-test</command>
+  <location>server</location>
+  <rules_id>100100</rules_id>
+  <timeout>30</timeout>
+</active-response>
+```
+
+The Wazuh configuration was validated and the manager was restarted successfully after this change.
+
+A final verification was performed by opening Notepad again. Custom Rule `100100` continued to generate the detection alert, but the Active Response marker file was not created.
+
+This confirmed the final safe state:
+
+```text
+Sysmon Monitoring        → Enabled
+Custom Rule 100100       → Enabled
+Wazuh Alerting           → Enabled
+Test Active Response     → Disabled
+Windows System Changes   → None
+```
+
+The Active Response remains documented as a successfully validated proof of concept while being disabled during normal lab operation.
+
+---
+
 ## Security and Safety Considerations
 
 This Active Response was intentionally designed as a non-destructive proof of concept.
@@ -204,6 +241,8 @@ No automated actions were configured to:
 - Modify endpoint security settings
 
 Instead, the response operated entirely on the Ubuntu Wazuh manager and only created and removed a temporary file under `/tmp`.
+
+No Windows firewall, network, account, registry, or endpoint security configuration was changed by the response.
 
 This approach demonstrates automated incident response while minimizing the risk of disrupting the monitored endpoint or home network.
 
@@ -240,8 +279,25 @@ The implementation demonstrates practical experience with:
 - Detection engineering
 - Custom Wazuh rules
 - Automated incident response
+- Python-based security automation
 - Stateful Active Response
 - Timeout-based rollback
 - Safe response design
+- Detection and response validation
 
 The test successfully demonstrated an end-to-end SOC detection and automated response workflow while preserving endpoint and network stability.
+
+After successful validation, the Active Response was returned to a disabled state while Sysmon monitoring, custom Rule `100100`, and Wazuh alerting remained enabled.
+
+---
+
+## Key Takeaways
+
+- Implemented a custom stateful Wazuh Active Response.
+- Linked the response to custom detection Rule `100100`.
+- Executed the response safely on the Ubuntu Wazuh manager rather than the Windows endpoint.
+- Used a harmless temporary marker file to verify automated execution.
+- Validated Wazuh's 30-second timeout-based rollback.
+- Avoided firewall, network, account, registry, and other disruptive Windows changes.
+- Disabled the test Active Response after successful validation.
+- Preserved Sysmon monitoring and custom detection functionality after disabling the response.
