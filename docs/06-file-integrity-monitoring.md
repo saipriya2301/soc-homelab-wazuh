@@ -15,8 +15,6 @@ Wazuh detects activities such as:
 - File creation
 - File modification
 - File deletion
-- Permission changes
-- Ownership changes (where applicable)
 
 FIM is commonly used to monitor sensitive files and detect potential tampering or malicious activity.
 
