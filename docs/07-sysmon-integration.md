@@ -8,7 +8,7 @@ The objective of this phase was to integrate **Microsoft Sysmon** with **Wazuh**
 
 ## Why Sysmon?
 
-Windows Event Logs provide basic operating system events, but they do not capture detailed endpoint activity.
+Windows Event Logs provide valuable operating system and security events, while Sysmon adds richer endpoint telemetry such as detailed process creation and other security-relevant activity.
 
 Microsoft Sysmon extends Windows logging by recording security-relevant events such as:
 
@@ -30,7 +30,7 @@ Integrating Sysmon with Wazuh provides richer telemetry for threat hunting and c
 | Ubuntu | 24.04 |
 | Wazuh | 4.13.1 |
 | Windows | Windows 11 |
-| Sysmon | Latest |
+| Endpoint Telemetry | Microsoft Sysmon |
 
 ---
 
