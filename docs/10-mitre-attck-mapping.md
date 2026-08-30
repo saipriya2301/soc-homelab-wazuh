@@ -72,7 +72,6 @@ The primary detection was:
 ```text
 Rule ID: 92039
 Description: A net.exe account discovery command was initiated
-Level: 3
 ```
 
 The alert was mapped by Wazuh to:
@@ -158,7 +157,7 @@ This validated the complete monitoring pipeline from endpoint activity to MITRE 
 
 Windows Command Shell (`cmd.exe`) can be used to execute commands and scripts on Windows systems.
 
-Because command shells are commonly used during legitimate administration as well as attacker activity, command shell detections require additional investigation and context.
+Because command shells are commonly used during legitimate administration as well as attacker activity, command-shell detections require additional investigation and context.
 
 ---
 
@@ -169,10 +168,9 @@ During Sysmon process monitoring, Wazuh generated the following detection:
 ```text
 Rule ID: 92032
 Description: Suspicious Windows cmd shell execution
-Level: 3
 ```
 
-The alert contained MITRE ATT&CK mappings including:
+The alert contained MITRE ATT&CK mapping including:
 
 ```text
 T1059.003 - Windows Command Shell
@@ -182,7 +180,7 @@ T1059.003 - Windows Command Shell
 
 ## Alert Investigation
 
-One observed Rule 92032 alert was investigated to understand the activity that caused the detection.
+One observed Rule `92032` alert was investigated to understand the activity that caused the detection.
 
 The event contained:
 
@@ -194,17 +192,7 @@ Child Process:
 C:\Program Files\Adobe\Acrobat DC\Acrobat\Browser\WCChromeExtn\WCChromeNativeMessagingHost.exe
 ```
 
-The child process was identified as:
-
-```text
-Adobe Create PDF plug-in listener for Chrome
-```
-
-with the company information:
-
-```text
-Adobe Systems Inc.
-```
+The child process was associated with Adobe Acrobat.
 
 The process was launched through `cmd.exe`, which caused the Wazuh command-shell detection rule to trigger.
 
@@ -218,7 +206,7 @@ This demonstrates an important SOC principle:
 
 > A security alert identifies activity that requires investigation, but an alert alone does not prove that malicious activity occurred.
 
-A SOC analyst must examine additional context such as:
+A SOC analyst should examine additional context such as:
 
 - Process path
 - Command line
@@ -325,7 +313,7 @@ and:
 tasklist
 ```
 
-were tested but did not generate corresponding Wazuh alerts using the current detection rules.
+were tested but did not generate corresponding Wazuh alerts using the detection rules configured at the time of testing.
 
 This demonstrated an important distinction between:
 
