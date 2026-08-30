@@ -26,7 +26,7 @@ The investigation focused on:
 - Command-line activity
 - Parent-child process relationships
 - Sysmon telemetry
-- File and registry integrity events
+- File integrity events
 - Wazuh rule information
 - Alert severity
 - Event timestamps
@@ -109,7 +109,6 @@ Wazuh generated:
 ```text
 Rule ID: 92039
 Description: A net.exe account discovery command was initiated
-Level: 3
 ```
 
 The underlying process telemetry showed:
@@ -200,7 +199,7 @@ For example, an executable observed under:
 C:\Windows\SoftwareDistribution\Download\Install\
 ```
 
-was associated with Windows update / Microsoft Defender activity.
+was associated with Windows Update / Microsoft Defender activity.
 
 Rather than immediately treating the alert as malicious, the executable path, parent process, and event context were reviewed.
 
@@ -324,6 +323,7 @@ This phase provided hands-on experience with:
 - Command-line analysis
 - Parent-child process analysis
 - Authentication event analysis
+- File integrity event investigation
 - Alert triage
 - False-positive investigation
 - MITRE ATT&CK interpretation
