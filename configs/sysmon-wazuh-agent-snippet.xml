@@ -1,0 +1,12 @@
+<!--
+  Wazuh Agent configuration snippet for collecting
+  Microsoft Sysmon events from a Windows endpoint.
+
+  Add this block inside the <ossec_config> section
+  of the Windows Wazuh agent ossec.conf file.
+-->
+
+<localfile>
+  <location>Microsoft-Windows-Sysmon/Operational</location>
+  <log_format>eventchannel</log_format>
+</localfile>
