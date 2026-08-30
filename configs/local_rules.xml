@@ -1,0 +1,20 @@
+<!--
+  Custom Wazuh detection rule used in the SOC homelab.
+
+  Purpose:
+  Detect Notepad process creation from Sysmon Event ID 1 telemetry.
+
+  This is a harmless lab detection created for demonstrating
+  custom detection engineering.
+-->
+
+<group name="local,sysmon,">
+
+  <rule id="100100" level="5">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)notepad\.exe$</field>
+    <description>Custom Detection: Notepad process created</description>
+    <group>sysmon,process_creation,custom_detection,</group>
+  </rule>
+
+</group>
