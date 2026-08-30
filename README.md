@@ -96,7 +96,6 @@ The implementation provided visibility into:
 - File creation
 - File modification
 - File deletion
-- Registry-related integrity events
 
 FIM alerts were investigated through the Wazuh Dashboard.
 
