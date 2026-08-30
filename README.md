@@ -139,7 +139,7 @@ Investigated activity included:
 - Process creation
 - Command-line execution
 - Parent-child process relationships
-- File and registry integrity activity
+- File integrity activity
 - Service-related activity
 - Sysmon events
 
