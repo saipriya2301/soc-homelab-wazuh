@@ -1,0 +1,21 @@
+<!--
+  Wazuh Active Response configuration used for the SOC homelab.
+
+  During validation, <disabled> was temporarily set to "no".
+  After successful testing, Active Response was returned
+  to the safe final state shown below.
+-->
+
+<command>
+  <name>ar-test</name>
+  <executable>ar_test.py</executable>
+  <timeout_allowed>yes</timeout_allowed>
+</command>
+
+<active-response>
+  <disabled>yes</disabled>
+  <command>ar-test</command>
+  <location>server</location>
+  <rules_id>100100</rules_id>
+  <timeout>30</timeout>
+</active-response>
